@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Menu Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body class="bg-gray-50 font-mono">
+    <header class="z-10 sticky top-0 bg-yellow-400 py-3">
+        <a href="https://alpina066.github.io/public/index.html" onclick="AnimationEffect">
+           <h1 class="text-center text-3xl font-extrabold mb-4">BALIEATS.</h1> 
+        </a>
+    </header>
+    
+    <main class="relative">
+        <div id="app" class="container mx-auto p-4">
+
+            <form @submit.prevent="addProduct" class="mb-4">
+                <div class="mb-2">
+                    <label for="productName" class="block text-gray-600">Product Name:</label>
+                    <input type="text" id="productName" v-model="newProduct.name" required
+                        class="border rounded py-2 px-3 w-full focus:outline-none focus:border-blue-500">
+                </div>
+                
+                <div class="mb-2">
+                    <label for="productPrice" class="block text-gray-600">Product Price:</label>
+                    <input type="number" id="productPrice" v-model="newProduct.price" required
+                        class="border rounded py-2 px-3 w-full focus:outline-none focus:border-blue-500">
+                </div>
+
+                <div class="mb-2">
+                    <label for="productDescription" class="block text-gray-600">Product Description:</label>
+                    <textarea id="productDescription" v-model="newProduct.description"
+                            class="border rounded py-2 px-3 w-full h-20 resize-none focus:outline-none focus:border-blue-500"></textarea>
+                </div>
+                
+                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none">
+                    Save
+                </button>
+            </form>
+
+            <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <li v-for="(product, index) in products" :key="index" class="bg-white p-4 rounded shadow">
+                    <div class="font-semibold">{{ product.name }}</div>
+                    <div class="text-gray-600">${{ product.price }}</div>
+                    <div class="text-xs font-light text-gray-500 mt-2">{{ product.description }}</div>
+                    <div class="mt-2">
+                        <button @click="editProduct(index)" class="text-blue-500 hover:text-blue-700">Edit</button>
+                        <button @click="deleteProduct(index)" class="text-red-500 hover:text-red-700 ml-2">Delete</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="bg-yellow-400 text-center text-black py-2 inset-x-0 bottom-0 ">
+        <p>Gede Alpina Dendra 2215101066</p>
+    </footer>
+    
+    <script src="app.js"></script>
+</body>
+</html>
